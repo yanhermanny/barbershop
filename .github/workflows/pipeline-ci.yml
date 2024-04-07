@@ -1,0 +1,56 @@
+# This workflow will test and build a Java project with Maven, cache/restore any dependencies to improve the workflow execution time and upload the generated package
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+name: Pipeline - CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    env:
+      DB_USERNAME: ${{ secrets.db_username }}
+      DB_PASSWORD: ${{ secrets.db_password }}
+
+    steps:
+    - name: Start MySQL Server
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -e "CREATE USER '${{ secrets.db_username }}'@'localhost' IDENTIFIED BY '${{ secrets.db_password }}';" -uroot -proot
+        mysql -e "GRANT ALL PRIVILEGES ON *.* TO '${{ secrets.db_username }}'@'localhost' WITH GRANT OPTION;" -uroot -proot
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+    - name: Set Up Maven Dependencies Caching
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+
+    - name: Maven Test
+      run: mvn --batch-mode test
+
+    - name: Maven Build
+      run: mvn --batch-mode --update-snapshots -Dmaven.test.skip verify --file pom.xml
+
+    - name: Stage Artifacts
+      run: mkdir stagin && cp target/*.jar staging
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Package
+        path: staging
+
+    - name: Update dependency graph
+      uses: advanced-security/maven-dependency-submission-action@v4.0.2
