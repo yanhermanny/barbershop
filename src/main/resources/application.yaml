@@ -7,7 +7,7 @@ spring:
     name: barbershop
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:${DB_URL}/${DB_SCHEMA}?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/barbershop?useTimezone=true&serverTimezone=UTC
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:
@@ -16,10 +16,10 @@ spring:
     show-sql: true
     open-in-view: true
   flyway:
-    url: jdbc:${DB_URL}/
+    url: jdbc:mysql://localhost:3306/
     user: ${DB_USERNAME}
     password: ${DB_PASSWORD}
-    schemas: ${DB_SCHEMA}
+    schemas: barbershop
   jackson:
     default-property-inclusion: use-defaults
     serialization:
