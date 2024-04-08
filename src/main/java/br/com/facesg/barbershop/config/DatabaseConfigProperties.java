@@ -5,10 +5,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import lombok.Data;
 
 /**
- * This record class represents database configuration properties.
+ * This class represents database configuration properties.
  */
-@ConfigurationProperties("database")
 @Data
+@ConfigurationProperties("database")
 public class DatabaseConfigProperties {
     /**
      * The JDBC URL for connecting to the database.
