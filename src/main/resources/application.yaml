@@ -2,24 +2,24 @@ server:
   port: 8080
 spring:
   config:
-    import: optional:secrets.yaml
+    import: optional:secrets/application-secrets.yaml
   application:
     name: barbershop
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/barbershop?useTimezone=true&serverTimezone=UTC
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${database.jdbc-url}/${database.schema}?useTimezone=true&serverTimezone=UTC
+    username: ${database.username}
+    password: ${database.password}
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     open-in-view: true
   flyway:
-    url: jdbc:mysql://localhost:3306/
-    user: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    schemas: barbershop
+    url: ${database.jdbc-url}
+    schemas: ${database.schema}
+    user: ${database.username}
+    password: ${database.password}
   jackson:
     default-property-inclusion: use-defaults
     serialization:
@@ -32,3 +32,8 @@ springdoc:
 logging:
   level:
     root: info
+database:
+  jdbc-url: ${jdbc_url}
+  schema: ${db_schema}
+  username: ${db_username}
+  password: ${db_password}

@@ -11,6 +11,8 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     env:
+      JDBC_URL: ${{ vars.jdbc_url }}
+      DB_SCHEMA: ${{ vars.db_schema }}
       DB_USERNAME: ${{ secrets.db_username }}
       DB_PASSWORD: ${{ secrets.db_password }}
 
