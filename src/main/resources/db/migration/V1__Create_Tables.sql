@@ -130,11 +130,11 @@ CREATE TABLE
         senha VARCHAR(20) NOT NULL,
         telefone VARCHAR(13) NOT NULL,
         data_nascimento DATE,
-        incluido_por BIGINT NOT NULL,
+        incluido_por VARCHAR(255) NOT NULL,
         data_inclusao DATETIME(6) NOT NULL,
-        alterado_por BIGINT,
+        alterado_por VARCHAR(255),
         data_alteracao DATETIME(6),
-        excluido_por BIGINT,
+        excluido_por VARCHAR(255),
         data_exclusao DATETIME(6),
         PRIMARY KEY (id_usuario)
     ) ENGINE = InnoDB;
@@ -165,15 +165,6 @@ ADD CONSTRAINT FK_servico_usuario2 FOREIGN KEY (excluido_por) REFERENCES USUARIO
 
 ALTER TABLE USUARIO
 ADD CONSTRAINT UK_email_usuario_unico UNIQUE (email);
-
-ALTER TABLE USUARIO
-ADD CONSTRAINT FK_usuario_usuario3 FOREIGN KEY (incluido_por) REFERENCES USUARIO (id_usuario);
-
-ALTER TABLE USUARIO
-ADD CONSTRAINT FK_usuario_usuario1 FOREIGN KEY (alterado_por) REFERENCES USUARIO (id_usuario);
-
-ALTER TABLE USUARIO
-ADD CONSTRAINT FK_usuario_usuario2 FOREIGN KEY (excluido_por) REFERENCES USUARIO (id_usuario);
 
 ALTER TABLE ADMINISTRADOR
 ADD CONSTRAINT FK_administrador_usuario FOREIGN KEY (id_administrador) REFERENCES USUARIO (id_usuario);
