@@ -42,7 +42,7 @@ public abstract class UserEntity implements Serializable {
 	private String password;
 
 	@Column(name = "telefone", nullable = false, length = 13)
-	private String phone_number;
+	private String phoneNumber;
 
 	@Column(name = "data_nascimento")
 	private LocalDate birthDate;

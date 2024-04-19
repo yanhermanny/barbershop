@@ -35,7 +35,7 @@ public class WorkHourEntity implements Serializable {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "dia_semana", nullable = false, length = 7)
+    @Column(name = "dia_semana", nullable = false, length = 3)
     private WeekDayEnum weekDay;
 
     @Column(name = "horario_inicio", nullable = false)
