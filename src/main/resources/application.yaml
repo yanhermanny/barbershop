@@ -12,14 +12,16 @@ spring:
     password: ${database.password}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: true
     open-in-view: true
   flyway:
+    enabled: true
     url: ${database.jdbc-url}
     schemas: ${database.schema}
     user: ${database.username}
     password: ${database.password}
+    locations: classpath:db/migration
   jackson:
     default-property-inclusion: use-defaults
     serialization:
