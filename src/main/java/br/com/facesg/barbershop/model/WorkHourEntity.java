@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "HORARIO_TRABALHO")
+@Entity(name = "horario_trabalho")
 public class WorkHourEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

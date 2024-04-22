@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "PRODUTO_BARBEIRO")
+@Entity(name = "produto_barbeiro")
 public class ProductBarberEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

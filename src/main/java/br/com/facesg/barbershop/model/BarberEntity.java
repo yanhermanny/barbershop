@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @PrimaryKeyJoinColumn(name = "id_barbeiro")
-@Entity(name = "BARBEIRO")
+@Entity(name = "barbeiro")
 public class BarberEntity extends UserEntity {
 
     @Column(name = "especialidade")

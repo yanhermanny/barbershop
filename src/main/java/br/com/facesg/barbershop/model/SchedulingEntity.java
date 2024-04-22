@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "AGENDAMENTO")
+@Entity(name = "agendamento")
 public class SchedulingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

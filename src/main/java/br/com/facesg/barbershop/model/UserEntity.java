@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "USUARIO")
+@Entity(name = "usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class UserEntity implements Serializable {
 
